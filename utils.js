@@ -2,10 +2,10 @@
 
 
 class Console {
-    static log(...args) {
+    log(...args) {
         host.diagnostics.debugLog(`${args}\n`);
     }
 }
-const console = Console;
+const console = new Console();
 
 /* module.exports = Console; */
