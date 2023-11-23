@@ -1,0 +1,13 @@
+{
+  "name": "windbg-js",
+  "version": "1.0.0",
+  "description": "i expected `Windbg JavaScript` to be closer to the `Frida JavaScript` syntax.",
+  "main": "main.js",
+  "scripts": {
+    "merge": "uglifyjs utils.js NativePointer.js main.js -o _agent.js"
+  },
+  "keywords": [],
+  "devDependencies": {
+    "uglify-js": "^3.17.4"
+  }
+}

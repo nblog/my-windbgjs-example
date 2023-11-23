@@ -6,6 +6,6 @@ class Console {
         host.diagnostics.debugLog(`${args}\n`);
     }
 }
-const console = new Console();
 
-/* module.exports = Console; */
+var console = new Console();
+/* module.exports = new Console(); */
