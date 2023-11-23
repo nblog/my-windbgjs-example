@@ -1,5 +1,3 @@
-///<reference path="C:\Program Files (x86)\Windows Kits\10\Debuggers\x64\winext\JsProvider.d.ts" />
-
 "use strict";
 
 
@@ -140,10 +138,12 @@ class NativePointer {
     }
 }
 
-const NULL = new NativePointer(0);
 
-function ptr(value) { return new NativePointer(value); };
+module.exports = {
+    ptrlength: function () {
+        return host.namespace.Debugger.State.PseudoRegisters.General.ptrsize;
+    },
 
-function ptrlength() {
-    return host.namespace.Debugger.State.PseudoRegisters.General.ptrsize;
+    NULL: new NativePointer(0),
+    ptr: function (value) { return new NativePointer(value); },
 }
