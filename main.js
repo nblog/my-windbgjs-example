@@ -38,6 +38,6 @@ function printArgs(nArg=5, abi='default') {
 var hitCount = 0;
 function onBreakpoint() {
     ++hitCount;
-    
+
     return;
 }
