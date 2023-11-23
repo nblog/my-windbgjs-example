@@ -42,7 +42,7 @@ class NativePointer {
     }
 
     readByteArray(length=0) {
-        return new Uint8Array(host.memory.readMemoryValues(this.addr, length));
+        return new Uint8Array(host.memory.readMemoryValues(this.addr, length)).buffer;
     }
     readU8() {
         return host.memory.readMemoryValues(this.addr, 1, 1)[0].asNumber();
@@ -69,11 +69,11 @@ class NativePointer {
         return host.memory.readMemoryValues(this.addr, 1, 8, true)[0].asNumber();
     }
     readFloat() {
-        const dataView = new DataView(this.readByteArray(4).buffer);
+        const dataView = new DataView(this.readByteArray(4));
         return dataView.getFloat32(0, true);
     }
     readDouble() {
-        const dataView = new DataView(this.readByteArray(8).buffer);
+        const dataView = new DataView(this.readByteArray(8));
         return dataView.getFloat64(0, true);
     }
     readUtf8String() {
@@ -95,8 +95,8 @@ class NativePointer {
     }
 
     writeByteArray(bytes) {
-        const arr = new Array(...bytes);
-        host.memory.writeMemoryValues(this.addr, arr.length, arr);
+        const arr = new Uint8Array(bytes);
+        host.memory.writeMemoryValues(this.addr, arr.byteLength, new Array(...arr));
     }
     writePointer(value) {
         const length = host.namespace.Debugger.State.PseudoRegisters.General.ptrsize;
@@ -129,12 +129,12 @@ class NativePointer {
     writeFloat(value=0) {
         const dataView = new DataView(new ArrayBuffer(4));
         dataView.setFloat32(0, value, true);
-        this.writeByteArray(new Uint8Array(dataView.buffer));
+        this.writeByteArray(dataView.buffer);
     }
     writeDouble(value=0) {
         const dataView = new DataView(new ArrayBuffer(8));
         dataView.setFloat64(0, value, true);
-        this.writeByteArray(new Uint8Array(dataView.buffer));
+        this.writeByteArray(dataView.buffer);
     }
 }
 
