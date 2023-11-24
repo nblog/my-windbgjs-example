@@ -23,14 +23,17 @@ function printArgs(nArg=5, abi='default') {
     const regContext = host.currentThread.Registers.User;
     const csp = new NativePointer(regContext.rsp);
 
+    let count = 0;
     for (const r of [ 'rcx', 'rdx', 'r8', 'r9' ]) {
-        console.log(`argv: ${regContext[r]}`);
+        console.log(`[${count}]: ${regContext[r]}`);
+        ++count;
     }
 
-    for (let index = 4; index < nArg; index++) {
-        let off_t = csp.add(index * 8);
-        if (enter) off_t = off_t.add(8);
-        console.log(`argv: ${off_t}  ${off_t.readPointer()}`);
+    if (enter) ++count;
+
+    for (; count < nArg; count++) {
+        let off_t = csp.add(count * 8);
+        console.log(`[${count}]: ${off_t}  ${off_t.readPointer()}`);
     }
 }
 
