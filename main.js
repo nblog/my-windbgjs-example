@@ -25,13 +25,13 @@ function printArgs(nArg=5, abi='default') {
     let count = 0;
     const csp = new NativePointer(regContext.rsp);
     for (const r of [ 'rcx', 'rdx', 'r8', 'r9' ]) {
-        console.log(`[${count}]: ${r}  ${regContext[r]}`);
+        console.log(`[${count}]: ${r} \t\t${regContext[r]}`);
         ++count;
     }
 
     for (; count < nArg; count++) {
         let off_t = (enter ? (count + 1) : count) * 8;
-        console.log(`[${count}]: sp+${off_t.toString(16)}  ${csp.add(off_t).readPointer()}`);
+        console.log(`[${count}]: sp+${off_t.toString(16)}\t\t${csp.add(off_t).readPointer()}`);
     }
 }
 
