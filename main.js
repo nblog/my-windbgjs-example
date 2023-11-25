@@ -31,8 +31,7 @@ function printArgs(nArg=5, abi='default') {
 
     for (; count < nArg; count++) {
         let off_t = (enter ? (count + 1) : count) * 8;
-        let sp = csp.add(off_t);
-        console.log(`[${count}]: sp+${off_t.toString(16)}  ${sp.readPointer()}`);
+        console.log(`[${count}]: sp+${off_t.toString(16)}  ${csp.add(off_t).readPointer()}`);
     }
 }
 
