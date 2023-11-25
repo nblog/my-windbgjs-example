@@ -21,19 +21,18 @@ function printArgs(nArg=5, abi='default') {
             .equals( host.currentThread.Stack.Frames[0].Attributes.ReturnOffset );
 
     const regContext = host.currentThread.Registers.User;
-    const csp = new NativePointer(regContext.rsp);
 
     let count = 0;
+    const csp = new NativePointer(regContext.rsp);
     for (const r of [ 'rcx', 'rdx', 'r8', 'r9' ]) {
-        console.log(`[${count}]: ${regContext[r]}`);
+        console.log(`[${count}]: ${r}  ${regContext[r]}`);
         ++count;
     }
 
-    if (enter) ++count;
-
     for (; count < nArg; count++) {
-        let off_t = csp.add(count * 8);
-        console.log(`[${count}]: ${off_t}  ${off_t.readPointer()}`);
+        let off_t = (enter ? (count + 1) : count) * 8;
+        let sp = csp.add(off_t);
+        console.log(`[${count}]: sp+${off_t.toString(16)}  ${sp.readPointer()}`);
     }
 }
 
