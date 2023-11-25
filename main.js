@@ -13,6 +13,11 @@ function initializeScript()
     return [new host.apiVersionSupport(1, 7)];
 }
 
+function invokeScript()
+{
+    return;
+}
+
 
 function printArgs(nArg=5, abi='default') {
     let enter = 
