@@ -20,7 +20,7 @@ function hexdump(target, options) {
     buffer = target;
   } else {
     if (!(target instanceof NativePointer))
-      target = target.handle;
+      target = new NativePointer(target);   // ?? host.Int64
     if (length === undefined)
       length = 256;
     buffer = target.readByteArray(length);
