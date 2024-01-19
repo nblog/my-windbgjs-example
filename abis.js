@@ -25,34 +25,34 @@ var ABIS = {
         fastcall: {
             argRegs: [USER_REGISTERS.rcx, USER_REGISTERS.rdx, USER_REGISTERS.r8, USER_REGISTERS.r9],
             retReg: USER_REGISTERS.rax,
-            stackReg: USER_REGISTERS.rsp
+            stackReg: USER_REGISTERS.rsp, alignReg: 4
         },
     },
     win32: {
         thiscall: {
             argRegs: [USER_REGISTERS.rcx],
             retReg: USER_REGISTERS.eax,
-            stackReg: USER_REGISTERS.esp
+            stackReg: USER_REGISTERS.esp, alignReg: 0
         },
         fastcall: {
             argRegs: [USER_REGISTERS.ecx, USER_REGISTERS.edx],
             retReg: USER_REGISTERS.eax,
-            stackReg: USER_REGISTERS.esp
+            stackReg: USER_REGISTERS.esp, alignReg: 0
         },
         stdcall: {
             argRegs: [],
             retReg: USER_REGISTERS.eax,
-            stackReg: USER_REGISTERS.esp
+            stackReg: USER_REGISTERS.esp, alignReg: 0
         },
         mscdecl: {
             argRegs: [],
             retReg: USER_REGISTERS.eax,
-            stackReg: USER_REGISTERS.esp
+            stackReg: USER_REGISTERS.esp, alignReg: 0
         },
         borland: {
             argRegs: [USER_REGISTERS.eax, USER_REGISTERS.edx, USER_REGISTERS.ecx],
             retReg: USER_REGISTERS.eax,
-            stackReg: USER_REGISTERS.esp
+            stackReg: USER_REGISTERS.esp, alignReg: 0
         },
     }
 }; ABIS['default'] = ABIS.win64.fastcall;
