@@ -4,7 +4,7 @@
   "description": "i expected `Windbg JavaScript` to be closer to the `Frida JavaScript` syntax.",
   "main": "main.js",
   "scripts": {
-    "merge": "uglifyjs utils.js hexdump.js NativePointer.js main.js -o _agent.js"
+    "merge": "uglifyjs utils.js hexdump.js NativePointer.js main.js -o _agent.js --beautify"
   },
   "keywords": [],
   "devDependencies": {

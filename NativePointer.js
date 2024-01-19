@@ -54,7 +54,7 @@ class NativePointer {
         return host.memory.readMemoryValues(this.addr, 1, 4)[0].asNumber();
     }
     readU64() {
-        return host.memory.readMemoryValues(this.addr, 1, 8)[0].asNumber();
+        return host.Int64(host.memory.readMemoryValues(this.addr, 1, 8)[0]);
     }
     readS8() {
         return host.memory.readMemoryValues(this.addr, 1, 1, true)[0].asNumber();
