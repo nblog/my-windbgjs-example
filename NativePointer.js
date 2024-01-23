@@ -54,7 +54,7 @@ class NativePointer {
         return host.memory.readMemoryValues(this.addr, 1, 4)[0].asNumber();
     }
     readU64() {
-        return host.Int64(host.memory.readMemoryValues(this.addr, 1, 8)[0]);
+        return host.memory.readMemoryValues(this.addr, 1, 8)[0];
     }
     readS8() {
         return host.memory.readMemoryValues(this.addr, 1, 1, true)[0].asNumber();
@@ -66,7 +66,7 @@ class NativePointer {
         return host.memory.readMemoryValues(this.addr, 1, 4, true)[0].asNumber();
     }
     readS64() {
-        return host.memory.readMemoryValues(this.addr, 1, 8, true)[0].asNumber();
+        return host.memory.readMemoryValues(this.addr, 1, 8, true)[0];
     }
     readFloat() {
         const dataView = new DataView(this.readByteArray(4));
